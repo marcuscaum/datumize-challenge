@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-const Sidebar = styled.div`
-  flex: 0 0 365px;
-  min-height: 100vh;
-  background-color: #004257;
-`;
+import { Sidebar, SidebarItem, SidebarLogo } from './Sidebar.styled';
 
 const Content = styled.div`
   flex: 1;
@@ -15,5 +11,7 @@ const Content = styled.div`
 
 export default {
   Sidebar,
+  SidebarItem,
+  SidebarLogo,
   Content,
 };
