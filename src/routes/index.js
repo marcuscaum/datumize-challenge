@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Home from '../Pages/Home';
-import Projects from '../Pages/Projects';
-import ProjectsNew from '../Pages/ProjectsNew';
-import NotFound from '../Pages/NotFound';
+import Home from '../pages/Home';
+import Projects from '../pages/Projects';
+import ProjectsNew from '../pages/ProjectsNew';
+import NotFound from '../pages/NotFound';
 
 const App = () => (
   <BrowserRouter>
