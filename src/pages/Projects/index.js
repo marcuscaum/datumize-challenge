@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
 
+import { RolesList, RoleItem } from './index.styled';
+
 const ProjectsPage = ({ projects, createProject, deleteProject }) => (
   <React.Fragment>
     <header>
@@ -12,7 +14,24 @@ const ProjectsPage = ({ projects, createProject, deleteProject }) => (
     <section>
       <List
         data={projects}
-        renderItem={data => <ListItem key={data.id} data={data.name} id={data.id} />}
+        renderItem={data => (
+          <ListItem key={data.id} data={data.name}>
+            <RolesList>
+              <RoleItem>
+                <strong>Admin: </strong>
+                Unassigned
+              </RoleItem>
+              <RoleItem>
+                <strong>Editor: </strong>
+                Unassigned
+              </RoleItem>
+              <RoleItem>
+                <strong>Viewer: </strong>
+                Unassigned
+              </RoleItem>
+            </RolesList>
+          </ListItem>
+        )}
       />
       <button type="button" onClick={() => createProject({ name: 'Test' })}>
         Add Project
