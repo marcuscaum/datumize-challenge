@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
-import Projects from '../pages/Projects';
+import Projects from '../containers/Projects';
 import ProjectsNew from '../pages/ProjectsNew';
 import NotFound from '../pages/NotFound';
 

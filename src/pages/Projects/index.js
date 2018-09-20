@@ -1,15 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
 
-const projects = [
-  { id: 1, name: 'Trip to space' },
-  { id: 2, name: 'Assembly Ikea furniture' },
-  { id: 3, name: 'Datumize Zentral' },
-];
-
-const Projects = () => (
+const ProjectsPage = ({ projects }) => (
   <React.Fragment>
     <header>
       <h1> Projects </h1>
@@ -20,4 +15,8 @@ const Projects = () => (
   </React.Fragment>
 );
 
-export default Projects;
+ProjectsPage.propTypes = {
+  projects: PropTypes.instanceOf(Array).isRequired,
+};
+
+export default ProjectsPage;
