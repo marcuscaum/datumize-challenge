@@ -1,4 +1,4 @@
-import remove from 'lodash.remove';
+import update from 'immutability-helper';
 
 import { CREATE_PROJECT, DELETE_PROJECT } from '../actionTypes';
 
@@ -11,16 +11,13 @@ const initialState = [
 export default (state = initialState, action) => {
   switch (action.type) {
     case CREATE_PROJECT: {
-      const { id, content } = action.payload;
-      return state.push({
-        id,
-        name: content.name,
-      });
+      const { content } = action.payload;
+      return update(state, { $push: [{ id: state[state.length - 1].id + 1, name: content.name }] });
     }
 
     case DELETE_PROJECT: {
       const { id } = action.payload;
-      return remove(state, { id });
+      return state.filter(item => item.id !== id);
     }
 
     default:

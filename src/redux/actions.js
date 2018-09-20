@@ -1,14 +1,8 @@
 import { CREATE_PROJECT, DELETE_PROJECT } from './actionTypes';
 
-let nextTodoId = 0;
-
 export const createProject = content => ({
   type: CREATE_PROJECT,
-  payload: {
-    /* eslint-disable no-plusplus */
-    id: ++nextTodoId,
-    content,
-  },
+  payload: { content },
 });
 
 export const deleteProject = id => ({
