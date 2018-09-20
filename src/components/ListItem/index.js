@@ -5,7 +5,7 @@ import ListItem from './index.styled';
 
 const ListItemComponent = ({ data, children }) => (
   <ListItem>
-    <span>{data}</span>
+    {data && <span>{data}</span>}
     {children}
   </ListItem>
 );
