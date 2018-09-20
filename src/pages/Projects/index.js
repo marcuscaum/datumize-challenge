@@ -10,7 +10,10 @@ const ProjectsPage = ({ projects, createProject, deleteProject }) => (
       <h1> Projects </h1>
     </header>
     <section>
-      <List data={projects} renderItem={data => <ListItem key={data.id} name={data.name} />} />
+      <List
+        data={projects}
+        renderItem={data => <ListItem key={data.id} data={data.name} id={data.id} />}
+      />
       <button type="button" onClick={() => createProject({ name: 'Test' })}>
         Add Project
       </button>

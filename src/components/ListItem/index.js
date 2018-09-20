@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ListItem = ({ name }) => (
-  <div>
-    <span>{name}</span>
-  </div>
+import ListItem from './index.styled';
+
+const ListItemComponent = ({ data, children }) => (
+  <ListItem>
+    <span>{data}</span>
+    {children}
+  </ListItem>
 );
 
-ListItem.propTypes = {
-  name: PropTypes.string.isRequired,
+ListItemComponent.propTypes = {
+  children: PropTypes.node.isRequired,
+  data: PropTypes.string.isRequired,
 };
 
-export default ListItem;
+export default ListItemComponent;

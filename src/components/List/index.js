@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const List = ({ data = [], renderItem }) => <section>{data.map(item => renderItem(item))}</section>;
+import List from './index.styled';
 
-List.propTypes = {
+const ListComponent = ({ data = [], renderItem }) => (
+  <List>{data.map(item => renderItem(item))}</List>
+);
+
+ListComponent.propTypes = {
   data: PropTypes.instanceOf(Array),
   renderItem: PropTypes.func.isRequired,
 };
 
-List.defaultProps = {
+ListComponent.defaultProps = {
   data: [],
 };
 
-export default List;
+export default ListComponent;
