@@ -4,3 +4,4 @@ export const CREATE_USER = 'CREATE_USER';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
 export const DELETE_ROLE = 'DELETE_ROLE';
 export const DELETE_USER = 'DELETE_USER';
+export const ASSIGN_USER_TO_PROJECT = 'ASSIGN_USER_TO_PROJECT';

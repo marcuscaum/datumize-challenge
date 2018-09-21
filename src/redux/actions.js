@@ -5,6 +5,7 @@ import {
   DELETE_PROJECT,
   DELETE_ROLE,
   DELETE_USER,
+  ASSIGN_USER_TO_PROJECT,
 } from './actionTypes';
 
 export const createActions = {
@@ -36,3 +37,8 @@ export const deleteActions = {
     payload: { id },
   }),
 };
+
+export const assignUserToProject = (id, content) => ({
+  type: ASSIGN_USER_TO_PROJECT,
+  payload: { id, content },
+});

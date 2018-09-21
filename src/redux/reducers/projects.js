@@ -1,12 +1,17 @@
 import update from 'immutability-helper';
 
-import { CREATE_PROJECT, DELETE_PROJECT } from '../actionTypes';
+import { CREATE_PROJECT, DELETE_PROJECT, ASSIGN_USER_TO_PROJECT } from '../actionTypes';
 
 const initialState = [
   {
     id: 1,
     name: 'Trip to space',
-    team: [],
+    team: [
+      {
+        role: 'Editor',
+        user: 'John Doe',
+      },
+    ],
   },
   {
     id: 2,
@@ -30,6 +35,16 @@ export default (state = initialState, action) => {
     case DELETE_PROJECT: {
       const { id } = action.payload;
       return state.filter(item => item.id !== id);
+    }
+
+    case ASSIGN_USER_TO_PROJECT: {
+      const { id, content } = action.payload;
+      const project = state.find(item => item.id === id);
+      project.team.push(content);
+      return {
+        ...state,
+        ...project,
+      };
     }
 
     default:

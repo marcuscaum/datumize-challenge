@@ -10,7 +10,12 @@ import withModal from '../../hocs/with-modal';
 import { RolesList, RoleItem, RoleButton } from './index.styled';
 
 const ProjectsPage = ({
-  projects, roles, createProject, deleteProject, openPortal,
+  projects,
+  roles,
+  createProject,
+  deleteProject,
+  openPortal,
+  assignUserToProject,
 }) => (
   <React.Fragment>
     <header>
@@ -22,16 +27,18 @@ const ProjectsPage = ({
         renderItem={data => (
           <ListItem key={data.id} data={data.name}>
             <RolesList>
-              {roles.map(role => (
-                <RoleItem key={role.id}>
-                  <strong>{role.name}</strong>
-                  {data[role.name] ? (
-                    data[role.name]
-                  ) : (
-                    <RoleButton onClick={openPortal}>Assign user</RoleButton>
-                  )}
-                </RoleItem>
-              ))}
+              {roles.map((role) => {
+                const member = data.team && data.team.find(item => item.role === role.name);
+
+                return (
+                  <RoleItem key={role.id}>
+                    <strong>{role.name}</strong>
+                    <RoleButton onClick={() => assignUserToProject(data.id, {})}>
+                      {(member && member.user) || 'Unassigned'}
+                    </RoleButton>
+                  </RoleItem>
+                );
+              })}
             </RolesList>
           </ListItem>
         )}
@@ -51,6 +58,7 @@ ProjectsPage.propTypes = {
   roles: PropTypes.instanceOf(Array).isRequired,
   createProject: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
+  assignUserToProject: PropTypes.func.isRequired,
   openPortal: PropTypes.func.isRequired,
 };
 
