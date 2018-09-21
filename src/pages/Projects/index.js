@@ -7,15 +7,14 @@ import UsersList from '../../components/ProjectsModalUsersList';
 
 import withModal from '../../hocs/with-modal';
 
-import { RolesList, RoleItem } from './index.styled';
+import { RolesList, RoleItem, RoleButton } from './index.styled';
 
 const ProjectsPage = ({
-  projects, roles, createProject, deleteProject, ...rest
+  projects, roles, createProject, deleteProject, openPortal,
 }) => (
   <React.Fragment>
     <header>
-      <h1> Projects </h1>
-      {console.log(rest)}
+      <h1>Projects</h1>
     </header>
     <section>
       <List
@@ -26,7 +25,11 @@ const ProjectsPage = ({
               {roles.map(role => (
                 <RoleItem key={role.id}>
                   <strong>{role.name}</strong>
-                  {data[role.name] ? data[role.name] : 'Unnasigned'}
+                  {data[role.name] ? (
+                    data[role.name]
+                  ) : (
+                    <RoleButton onClick={openPortal}>Assign user</RoleButton>
+                  )}
                 </RoleItem>
               ))}
             </RolesList>
@@ -48,6 +51,7 @@ ProjectsPage.propTypes = {
   roles: PropTypes.instanceOf(Array).isRequired,
   createProject: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
+  openPortal: PropTypes.func.isRequired,
 };
 
 export default withModal({

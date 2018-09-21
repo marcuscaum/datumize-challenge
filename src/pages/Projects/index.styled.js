@@ -21,3 +21,12 @@ export const RoleItem = styled.div`
     }
   }
 `;
+
+export const RoleButton = styled.div`
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  float: right;
+  color: #004257;
+  cursor: pointer;
+`;

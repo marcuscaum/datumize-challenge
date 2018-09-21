@@ -4,7 +4,7 @@ import { PortalWithState } from 'react-portal';
 import Modal from '../styles/Modal.styled';
 
 const withModal = ({ content, title, description }) => WrappedComponent => (props, context) => (
-  <PortalWithState closeOnEsc defaultOpen>
+  <PortalWithState closeOnEsc>
     {portalProps => (
       <React.Fragment>
         {portalProps.portal(
