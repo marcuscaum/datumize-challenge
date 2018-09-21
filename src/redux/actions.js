@@ -1,5 +1,10 @@
 import {
-  CREATE_PROJECT, CREATE_ROLE, DELETE_PROJECT, DELETE_ROLE,
+  CREATE_PROJECT,
+  CREATE_ROLE,
+  CREATE_USER,
+  DELETE_PROJECT,
+  DELETE_ROLE,
+  DELETE_USER,
 } from './actionTypes';
 
 export const createProject = content => ({
@@ -19,5 +24,15 @@ export const createRole = content => ({
 
 export const deleteRole = id => ({
   type: DELETE_ROLE,
+  payload: { id },
+});
+
+export const createUser = content => ({
+  type: CREATE_USER,
+  payload: { content },
+});
+
+export const deleteUser = id => ({
+  type: DELETE_USER,
   payload: { id },
 });

@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Projects from '../containers/Projects';
 import Roles from '../containers/Roles';
+import Users from '../containers/Users';
 import NotFound from '../pages/NotFound';
 
 import Layout from '../styles/Layout.styled';
@@ -31,12 +32,16 @@ const App = () => (
         <SidebarItem exact to="/roles">
           Roles
         </SidebarItem>
+        <SidebarItem exact to="/users">
+          Users
+        </SidebarItem>
       </Sidebar>
       <Content>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/projects" component={Projects} />
-          <Route exact path="/roles/" component={Roles} />
+          <Route exact path="/roles" component={Roles} />
+          <Route exact path="/users" component={Users} />
           <Route component={NotFound} />
         </Switch>
       </Content>

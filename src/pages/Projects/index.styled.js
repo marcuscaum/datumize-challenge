@@ -14,7 +14,6 @@ export const RoleItem = styled.div`
   border-radius: 5px;
 
   strong {
-    text-transform: capitalize;
     margin-right: 5px;
 
     &::after {

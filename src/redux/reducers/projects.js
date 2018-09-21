@@ -6,23 +6,17 @@ const initialState = [
   {
     id: 1,
     name: 'Trip to space',
-    admin: '',
-    editor: '',
-    viewer: '',
+    team: [],
   },
   {
     id: 2,
     name: 'Assembly Ikea furniture',
-    admin: '',
-    editor: '',
-    viewer: '',
+    team: [],
   },
   {
     id: 3,
     name: 'Datumize Zentral',
-    admin: '',
-    editor: '',
-    viewer: '',
+    team: [],
   },
 ];
 
