@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
+import UsersList from '../../components/ProjectsModalUsersList';
+
+import withModal from '../../hocs/with-modal';
 
 import { RolesList, RoleItem } from './index.styled';
 
@@ -46,4 +49,6 @@ ProjectsPage.propTypes = {
   deleteProject: PropTypes.func.isRequired,
 };
 
-export default ProjectsPage;
+export default withModal({
+  modalContent: props => <UsersList {...props} />,
+})(ProjectsPage);
