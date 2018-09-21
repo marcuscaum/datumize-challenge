@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import Projects from '../containers/Projects';
-import ProjectsNew from '../pages/ProjectsNew';
+import Roles from '../containers/Roles';
 import NotFound from '../pages/NotFound';
 
 import Layout from '../styles/Layout.styled';
@@ -31,7 +31,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/projects" component={Projects} />
-          <Route exact path="/projects/:id" component={ProjectsNew} />
+          <Route exact path="/roles/" component={Roles} />
           <Route component={NotFound} />
         </Switch>
       </Content>
