@@ -5,6 +5,7 @@ import { withProps } from 'recompose';
 
 import List from '../List';
 import ListItem from '../ListItem';
+import EmptyList from '../EmptyList';
 
 import ListContainer from './index.styled';
 
@@ -20,11 +21,12 @@ const ProjectsModalUsersList = ({
     <ListContainer>
       <List
         data={users}
+        noItemsMessageComponent={() => <EmptyList message="Sorry, no users to be added" />}
         renderItem={(data) => {
           const parsedId = parseInt(projectId, 0);
           const project = projects.find(item => item.id === parsedId);
 
-          if (_some(project.team, { user: data.name })) return false;
+          if (_some(project.team, { user: data.name })) return null;
 
           return (
             <ListItem

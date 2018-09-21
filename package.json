@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "immutability-helper": "^2.8.1",
+    "lodash.compact": "^3.0.1",
     "lodash.some": "^4.6.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",

@@ -11,10 +11,6 @@ const initialState = [
         role: 'Editor',
         user: 'John Doe',
       },
-      {
-        role: 'Viewer',
-        user: 'Sara',
-      },
     ],
   },
   {
