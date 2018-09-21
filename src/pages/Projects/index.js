@@ -20,7 +20,7 @@ const ProjectsPage = ({
           <ListItem key={data.id} data={data.name}>
             <RolesList>
               {roles.map(role => (
-                <RoleItem>
+                <RoleItem key={role.id}>
                   <strong>{role.name}</strong>
                   {data[role.name] ? data[role.name] : 'Unnasigned'}
                 </RoleItem>

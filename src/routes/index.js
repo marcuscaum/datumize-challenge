@@ -25,7 +25,12 @@ const App = () => (
         <SidebarItem exact to="/">
           Home
         </SidebarItem>
-        <SidebarItem to="/projects">Projects</SidebarItem>
+        <SidebarItem exact to="/projects">
+          Projects
+        </SidebarItem>
+        <SidebarItem exact to="/roles">
+          Roles
+        </SidebarItem>
       </Sidebar>
       <Content>
         <Switch>

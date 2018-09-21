@@ -11,8 +11,12 @@ const ListItemComponent = ({ data, children }) => (
 );
 
 ListItemComponent.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   data: PropTypes.string.isRequired,
+};
+
+ListItemComponent.defaultProps = {
+  children: null,
 };
 
 export default ListItemComponent;
