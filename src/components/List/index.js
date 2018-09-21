@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import List from './index.styled';
 
-const ListComponent = ({ data = [], renderItem }) => (
-  <List>{data.map(item => renderItem(item))}</List>
+const ListComponent = ({ data, renderItem }) => (
+  <List>{data && data.map(item => renderItem(item))}</List>
 );
 
 ListComponent.propTypes = {

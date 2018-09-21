@@ -10,12 +10,7 @@ import withModal from '../../hocs/with-modal';
 import { RolesList, RoleItem, RoleButton } from './index.styled';
 
 const ProjectsPage = ({
-  projects,
-  roles,
-  createProject,
-  deleteProject,
-  openPortal,
-  assignUserToProject,
+  projects, roles, createProject, deleteProject, openPortal, history,
 }) => (
   <section>
     <List
@@ -25,11 +20,15 @@ const ProjectsPage = ({
           <RolesList>
             {roles.map((role) => {
               const member = data.team && data.team.find(item => item.role === role.name);
-
               return (
                 <RoleItem key={role.id}>
                   <strong>{role.name}</strong>
-                  <RoleButton onClick={() => assignUserToProject(data.id, {})}>
+                  <RoleButton
+                    onClick={() => {
+                      history.push(`/projects?id=${data.id}&role=${role.name}`);
+                      openPortal();
+                    }}
+                  >
                     {(member && member.user) || 'Unassigned'}
                   </RoleButton>
                 </RoleItem>
@@ -53,7 +52,9 @@ ProjectsPage.propTypes = {
   roles: PropTypes.instanceOf(Array).isRequired,
   createProject: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
-  assignUserToProject: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   openPortal: PropTypes.func.isRequired,
 };
 

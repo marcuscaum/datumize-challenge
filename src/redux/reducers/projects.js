@@ -33,7 +33,14 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case CREATE_PROJECT: {
       const { content } = action.payload;
-      return update(state, { $push: [{ id: state[state.length - 1].id + 1, name: content.name }] });
+      return update(state, {
+        $push: [
+          {
+            id: state[state.length - 1].id + 1,
+            name: content.name,
+          },
+        ],
+      });
     }
 
     case DELETE_PROJECT: {
@@ -43,12 +50,29 @@ export default (state = initialState, action) => {
 
     case ASSIGN_USER_TO_PROJECT: {
       const { id, content } = action.payload;
-      const project = state.find(item => item.id === id);
-      project.team.push(content);
-      return {
-        ...state,
-        ...project,
-      };
+      const projectIndex = state.findIndex(item => item.id === id);
+      const teamIndex = state[projectIndex].team.length
+        ? state[projectIndex].team.findIndex(item => item.role === content.role)
+        : -1;
+
+      if (teamIndex >= 0) {
+        return update(state, {
+          [projectIndex]: {
+            team: {
+              [teamIndex]: {
+                user: { $set: content.user },
+              },
+            },
+          },
+        });
+      }
+      return update(state, {
+        [projectIndex]: {
+          team: {
+            $push: [{ ...content }],
+          },
+        },
+      });
     }
 
     default:

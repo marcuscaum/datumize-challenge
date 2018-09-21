@@ -15,7 +15,7 @@ const withModal = ({ content, title, description }) => WrappedComponent => (prop
                 <h1>{title}</h1>
                 <span>{description}</span>
               </Modal.Header>
-              {content(props)}
+              {content({ ...props, ...portalProps })}
             </Modal.Content>
           </Modal.Container>,
         )}

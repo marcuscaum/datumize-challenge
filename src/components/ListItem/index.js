@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import ListItem from './index.styled';
 
-const ListItemComponent = ({ data, children }) => (
-  <ListItem>
+const ListItemComponent = ({ data, children, ...rest }) => (
+  <ListItem {...rest}>
     {data && <span>{data}</span>}
     {children}
   </ListItem>
