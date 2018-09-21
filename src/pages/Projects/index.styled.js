@@ -12,4 +12,13 @@ export const RoleItem = styled.div`
   background-color: #f3f3f3;
   padding: 5px 10px;
   border-radius: 5px;
+
+  strong {
+    text-transform: capitalize;
+    margin-right: 5px;
+
+    &::after {
+      content: ':';
+    }
+  }
 `;

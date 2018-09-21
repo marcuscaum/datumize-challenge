@@ -6,7 +6,9 @@ import ListItem from '../../components/ListItem';
 
 import { RolesList, RoleItem } from './index.styled';
 
-const ProjectsPage = ({ projects, createProject, deleteProject }) => (
+const ProjectsPage = ({
+  projects, roles, createProject, deleteProject,
+}) => (
   <React.Fragment>
     <header>
       <h1> Projects </h1>
@@ -17,18 +19,12 @@ const ProjectsPage = ({ projects, createProject, deleteProject }) => (
         renderItem={data => (
           <ListItem key={data.id} data={data.name}>
             <RolesList>
-              <RoleItem>
-                <strong>Admin: </strong>
-                Unassigned
-              </RoleItem>
-              <RoleItem>
-                <strong>Editor: </strong>
-                Unassigned
-              </RoleItem>
-              <RoleItem>
-                <strong>Viewer: </strong>
-                Unassigned
-              </RoleItem>
+              {roles.map(role => (
+                <RoleItem>
+                  <strong>{role.name}</strong>
+                  {data[role.name] ? data[role.name] : 'Unnasigned'}
+                </RoleItem>
+              ))}
             </RolesList>
           </ListItem>
         )}
@@ -45,6 +41,7 @@ const ProjectsPage = ({ projects, createProject, deleteProject }) => (
 
 ProjectsPage.propTypes = {
   projects: PropTypes.instanceOf(Array).isRequired,
+  roles: PropTypes.instanceOf(Array).isRequired,
   createProject: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
 };

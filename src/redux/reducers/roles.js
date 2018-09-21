@@ -1,39 +1,30 @@
 import update from 'immutability-helper';
 
-import { CREATE_PROJECT, DELETE_PROJECT } from '../actionTypes';
+import { CREATE_ROLE, DELETE_ROLE } from '../actionTypes';
 
 const initialState = [
   {
     id: 1,
-    name: 'Trip to space',
-    admin: '',
-    editor: '',
-    viewer: '',
+    name: 'admin',
   },
   {
     id: 2,
-    name: 'Assembly Ikea furniture',
-    admin: '',
-    editor: '',
-    viewer: '',
+    name: 'editor',
   },
   {
     id: 3,
-    name: 'Datumize Zentral',
-    admin: '',
-    editor: '',
-    viewer: '',
+    name: 'viewer',
   },
 ];
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_PROJECT: {
+    case CREATE_ROLE: {
       const { content } = action.payload;
       return update(state, { $push: [{ id: state[state.length - 1].id + 1, name: content.name }] });
     }
 
-    case DELETE_PROJECT: {
+    case DELETE_ROLE: {
       const { id } = action.payload;
       return state.filter(item => item.id !== id);
     }
