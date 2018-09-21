@@ -12,7 +12,7 @@ export const Sidebar = styled.div`
 
 export const SidebarItem = styled(NavLink)`
   color: #e6ebed;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 18px;
   box-sizing: border-box;
   text-decoration: none;
