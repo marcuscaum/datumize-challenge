@@ -7,32 +7,32 @@ import {
   DELETE_USER,
 } from './actionTypes';
 
-export const createProject = content => ({
-  type: CREATE_PROJECT,
-  payload: { content },
-});
+export const createActions = {
+  project: content => ({
+    type: CREATE_PROJECT,
+    payload: { content },
+  }),
+  role: content => ({
+    type: CREATE_ROLE,
+    payload: { content },
+  }),
+  user: content => ({
+    type: CREATE_USER,
+    payload: { content },
+  }),
+};
 
-export const deleteProject = id => ({
-  type: DELETE_PROJECT,
-  payload: { id },
-});
-
-export const createRole = content => ({
-  type: CREATE_ROLE,
-  payload: { content },
-});
-
-export const deleteRole = id => ({
-  type: DELETE_ROLE,
-  payload: { id },
-});
-
-export const createUser = content => ({
-  type: CREATE_USER,
-  payload: { content },
-});
-
-export const deleteUser = id => ({
-  type: DELETE_USER,
-  payload: { id },
-});
+export const deleteActions = {
+  project: id => ({
+    type: DELETE_PROJECT,
+    payload: { id },
+  }),
+  role: id => ({
+    type: DELETE_ROLE,
+    payload: { id },
+  }),
+  user: id => ({
+    type: DELETE_USER,
+    payload: { id },
+  }),
+};
