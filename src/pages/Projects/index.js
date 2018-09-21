@@ -10,11 +10,12 @@ import withModal from '../../hocs/with-modal';
 import { RolesList, RoleItem } from './index.styled';
 
 const ProjectsPage = ({
-  projects, roles, createProject, deleteProject,
+  projects, roles, createProject, deleteProject, ...rest
 }) => (
   <React.Fragment>
     <header>
       <h1> Projects </h1>
+      {console.log(rest)}
     </header>
     <section>
       <List
@@ -50,5 +51,7 @@ ProjectsPage.propTypes = {
 };
 
 export default withModal({
-  modalContent: props => <UsersList {...props} />,
+  content: props => <UsersList {...props} />,
+  title: 'Assign an user',
+  description: 'Select a user from the list to assign to this role',
 })(ProjectsPage);

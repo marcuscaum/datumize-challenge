@@ -4,8 +4,14 @@ import PropTypes from 'prop-types';
 import List from '../List';
 import ListItem from '../ListItem';
 
+import ListContainer from './index.styled';
+
 const ProjectsModalUsersList = ({ users }) => (
-  <List data={users} renderItem={data => <ListItem key={data.id} data={data.name} />} />
+  <React.Fragment>
+    <ListContainer>
+      <List data={users} renderItem={data => <ListItem key={data.id} data={data.name} />} />
+    </ListContainer>
+  </React.Fragment>
 );
 
 ProjectsModalUsersList.propTypes = {
