@@ -21,7 +21,7 @@ export const SidebarItem = styled(NavLink)`
   border-radius: 5px;
 
   &.active {
-    background-color: #54bdd0;
+    background-color: rgba(0, 131, 255, 0.2);
   }
 `;
 

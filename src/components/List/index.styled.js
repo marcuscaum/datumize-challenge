@@ -5,8 +5,4 @@ export default styled.ul`
   box-sizing: border-box;
   padding: 0;
   margin: 25px 0;
-
-  li:last-child {
-    border-bottom: none;
-  }
 `;
