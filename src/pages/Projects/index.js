@@ -35,7 +35,7 @@ const ProjectsPage = ({
                 const memberName = member && member.name;
 
                 return (
-                  <RoleItem key={role.id}>
+                  <RoleItem key={role.id} hasMember={memberName}>
                     <strong>{role.name}</strong>
                     <RoleButton
                       onClick={() => {

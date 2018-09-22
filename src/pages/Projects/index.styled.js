@@ -9,9 +9,10 @@ export const RolesList = styled.div`
 
 export const RoleItem = styled.div`
   margin-right: 10px;
-  background-color: #f3f3f3;
+  background-color: ${({ hasMember }) => (hasMember ? '#121921' : '#f3f3f3')};
   padding: 5px 10px;
   border-radius: 5px;
+  color: ${({ hasMember }) => (hasMember ? 'white' : '#004257')};
 
   strong {
     margin-right: 5px;
@@ -26,8 +27,8 @@ export const RoleButton = styled.div`
   border: 0;
   padding: 0;
   float: right;
-  color: #004257;
   cursor: pointer;
+
   &:hover {
     text-decoration: underline;
   }

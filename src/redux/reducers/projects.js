@@ -46,22 +46,59 @@ export default (state = initialState, action) => {
 
     case ASSIGN_USER_TO_PROJECT: {
       const { id, content } = action.payload;
+
       const projectIndex = state.findIndex(item => item.id === id);
-      const teamIndex = state[projectIndex].team.length
-        ? state[projectIndex].team.findIndex(item => item.role === content.role)
+      const { team } = state[projectIndex];
+
+      const teamMemberIndexByRole = team.length
+        ? team.findIndex(item => item.role === content.role)
+        : -1;
+      const teamMemberIndexByName = team.length
+        ? team.findIndex(item => item.name === content.name)
         : -1;
 
-      if (teamIndex >= 0) {
+      // If the user is already assigned to a role,
+      // remove him from the previous role and set him on the new role
+      if (teamMemberIndexByName >= 0 && teamMemberIndexByRole >= 0) {
         return update(state, {
           [projectIndex]: {
             team: {
-              [teamIndex]: {
+              $splice: [[teamMemberIndexByName, 1]],
+              [teamMemberIndexByRole]: {
                 name: { $set: content.name },
               },
             },
           },
         });
       }
+
+      // If user is not on the team but the role is already taken,
+      // remove the user with the role from the team and add the new user on the team using his role
+      if (teamMemberIndexByName >= 0 && teamMemberIndexByRole < 0) {
+        return update(state, {
+          [projectIndex]: {
+            team: {
+              $splice: [[teamMemberIndexByName, 1]],
+              $push: [{ ...content }],
+            },
+          },
+        });
+      }
+
+      // If the role is already taken,
+      // just update with the new user
+      if (teamMemberIndexByRole >= 0) {
+        return update(state, {
+          [projectIndex]: {
+            team: {
+              [teamMemberIndexByRole]: {
+                name: { $set: content.name },
+              },
+            },
+          },
+        });
+      }
+
       return update(state, {
         [projectIndex]: {
           team: {

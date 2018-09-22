@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _some from 'lodash.some';
 import { withProps } from 'recompose';
 
 import List from '../List';
