@@ -9,7 +9,7 @@ const initialState = [
     team: [
       {
         role: 'Editor',
-        user: 'John Doe',
+        name: 'John Doe',
       },
     ],
   },
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
         $push: [
           {
             id: state[state.length - 1].id + 1,
-            name: content.name,
+            ...content,
           },
         ],
       });
@@ -56,7 +56,7 @@ export default (state = initialState, action) => {
           [projectIndex]: {
             team: {
               [teamIndex]: {
-                user: { $set: content.user },
+                name: { $set: content.name },
               },
             },
           },
