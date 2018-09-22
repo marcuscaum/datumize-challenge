@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
-import UsersList from '../../components/ProjectsModalUsersList';
+import UsersList from '../../components/UsersListModal';
 
 import withModal from '../../hocs/with-modal';
 

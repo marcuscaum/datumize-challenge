@@ -8,7 +8,7 @@ import EmptyList from '../EmptyList';
 
 import ListContainer from './index.styled';
 
-const ProjectsModalUsersList = ({
+const UsersListModal = ({
   users, assignUserToProject, closePortal, searchQuery,
 }) => (
   <React.Fragment>
@@ -17,8 +17,6 @@ const ProjectsModalUsersList = ({
         data={users}
         noItemsMessageComponent={() => <EmptyList message="Sorry, no users to be added" />}
         renderItem={(user) => {
-          const projectParsedId = parseInt(searchQuery.projectId, 0);
-
           if (user.name === searchQuery.user) return null;
 
           return (
@@ -26,7 +24,7 @@ const ProjectsModalUsersList = ({
               key={user.id}
               data={user.name}
               onClick={async () => {
-                await assignUserToProject(projectParsedId, {
+                await assignUserToProject(searchQuery.projectId, {
                   role: searchQuery.role,
                   name: user.name,
                 });
@@ -40,7 +38,7 @@ const ProjectsModalUsersList = ({
   </React.Fragment>
 );
 
-ProjectsModalUsersList.propTypes = {
+UsersListModal.propTypes = {
   users: PropTypes.instanceOf(Array).isRequired,
   assignUserToProject: PropTypes.func.isRequired,
   closePortal: PropTypes.func.isRequired,
@@ -49,8 +47,8 @@ ProjectsModalUsersList.propTypes = {
 
 export default withProps(({ location: { search } }) => ({
   searchQuery: {
-    projectId: new URLSearchParams(search).get('id'),
+    projectId: parseInt(new URLSearchParams(search).get('id'), 0),
     role: new URLSearchParams(search).get('role'),
     user: new URLSearchParams(search).get('user'),
   },
-}))(ProjectsModalUsersList);
+}))(UsersListModal);
