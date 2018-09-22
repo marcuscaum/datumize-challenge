@@ -7,7 +7,7 @@ import UsersList from '../../components/ProjectsModalUsersList';
 
 import withModal from '../../hocs/with-modal';
 
-import AddItem from '../../components/AddItem';
+import AddItemForm from '../../components/AddItemForm';
 
 import { RolesList, RoleItem, RoleButton } from './index.styled';
 
@@ -15,8 +15,9 @@ const ProjectsPage = ({
   projects, roles, createProject, deleteProject, openPortal, history,
 }) => (
   <React.Fragment>
-    <AddItem
-      placeholder="Add new project"
+    <AddItemForm
+      placeholder="Project name"
+      buttonLabel="+ NEW PROJECT"
       onClickSubmit={createProject}
       fields={['name']}
       dataObject={{
