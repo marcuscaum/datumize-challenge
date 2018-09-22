@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _compact from 'lodash.compact';
+import { PoseGroup } from 'react-pose';
 
 import List from './index.styled';
 
@@ -11,7 +12,11 @@ const ListComponent = ({ data, renderItem, noItemsMessageComponent }) => {
     return <List>{noItemsMessageComponent()}</List>;
   }
 
-  return <List>{_compact(items)}</List>;
+  return (
+    <List>
+      <PoseGroup>{_compact(items)}</PoseGroup>
+    </List>
+  );
 };
 
 ListComponent.propTypes = {
