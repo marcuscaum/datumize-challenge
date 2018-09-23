@@ -19,9 +19,12 @@ const ProjectsPage = ({
       placeholder="Project name"
       buttonLabel="+ NEW PROJECT"
       action={createProject}
-      fields={['name']}
+      fields={{
+        name: 'Project name',
+      }}
       dataObject={{
         name: '',
+        xunda: '',
         team: [],
       }}
     />

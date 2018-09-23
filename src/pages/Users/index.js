@@ -8,10 +8,11 @@ import AddItemForm from '../../components/AddItemForm';
 const UsersPage = ({ users, createUser, deleteUser }) => (
   <React.Fragment>
     <AddItemForm
-      placeholder="User name"
       buttonLabel="+ NEW USER"
       action={createUser}
-      fields={['name']}
+      fields={{
+        name: 'User name',
+      }}
       dataObject={{
         name: '',
         members: [],

@@ -8,10 +8,11 @@ import AddItemForm from '../../components/AddItemForm';
 const RolesPage = ({ roles, createRole, deleteRole }) => (
   <React.Fragment>
     <AddItemForm
-      placeholder="Role name"
       buttonLabel="+ NEW ROLE"
       action={createRole}
-      fields={['name']}
+      fields={{
+        name: 'Role name',
+      }}
       dataObject={{
         name: '',
         members: [],

@@ -7,7 +7,6 @@ import TextField from '../../styles/TextField.styled';
 import Button from '../../styles/Button.styled';
 
 const AddItemFormComponent = ({
-  placeholder,
   buttonLabel,
   action,
   onChangeValue,
@@ -17,11 +16,11 @@ const AddItemFormComponent = ({
   validateField,
 }) => (
   <AddItemForm>
-    {fields.map(key => (
+    {Object.keys(fields).map(key => (
       <TextField
         key={key}
         required
-        placeholder={placeholder}
+        placeholder={fields[key]}
         type="text"
         name={key}
         onChange={onChangeValue}
@@ -53,20 +52,19 @@ const AddItemFormComponent = ({
 );
 
 AddItemFormComponent.propTypes = {
-  placeholder: PropTypes.string.isRequired,
   buttonLabel: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
   onChangeValue: PropTypes.func.isRequired,
   validateField: PropTypes.func.isRequired,
   requiredFieldsState: PropTypes.instanceOf(Object).isRequired,
   formValues: PropTypes.instanceOf(Object).isRequired,
-  fields: PropTypes.instanceOf(Array).isRequired,
+  fields: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default compose(
   withState('formValues', 'formValuesHandler', ({ dataObject }) => ({ ...dataObject })),
   withState('requiredFieldsState', 'requiredFieldsStateHandler', ({ fields, requiredFields }) => {
-    const items = requiredFields || fields;
+    const items = requiredFields || Object.keys(fields);
     return Object.assign({}, ...items.map(item => ({ [item]: false })));
   }),
   withHandlers({
