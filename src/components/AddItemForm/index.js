@@ -9,7 +9,7 @@ import Button from '../../styles/Button.styled';
 const AddItemFormComponent = ({
   placeholder,
   buttonLabel,
-  onClickSubmit,
+  action,
   onChangeValue,
   formValues,
   fields,
@@ -30,7 +30,7 @@ const AddItemFormComponent = ({
         onKeyPress={(e) => {
           if (e.key === 'Enter' && e.target.value) {
             e.preventDefault();
-            onClickSubmit(formValues);
+            action(formValues);
           }
         }}
       />
@@ -44,7 +44,7 @@ const AddItemFormComponent = ({
         });
 
         if (isEmpty) return false;
-        return onClickSubmit(formValues);
+        return action(formValues);
       }}
     >
       {buttonLabel}
@@ -55,7 +55,7 @@ const AddItemFormComponent = ({
 AddItemFormComponent.propTypes = {
   placeholder: PropTypes.string.isRequired,
   buttonLabel: PropTypes.string.isRequired,
-  onClickSubmit: PropTypes.func.isRequired,
+  action: PropTypes.func.isRequired,
   onChangeValue: PropTypes.func.isRequired,
   validateField: PropTypes.func.isRequired,
   requiredFieldsState: PropTypes.instanceOf(Object).isRequired,

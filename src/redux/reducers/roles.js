@@ -6,17 +6,14 @@ const initialState = [
   {
     id: 1,
     name: 'Admin',
-    members: [],
   },
   {
     id: 2,
     name: 'Editor',
-    members: [],
   },
   {
     id: 3,
     name: 'Viewer',
-    members: [],
   },
 ];
 

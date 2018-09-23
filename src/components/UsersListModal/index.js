@@ -24,15 +24,13 @@ const renderUserListItem = ({
 );
 
 const UsersListModal = ({ users, ...rest }) => (
-  <React.Fragment>
-    <ListContainer>
-      <List
-        data={users}
-        noItemsMessageComponent={() => <EmptyList message="Sorry, no users to be added" />}
-        renderItem={user => renderUserListItem({ user, ...rest })}
-      />
-    </ListContainer>
-  </React.Fragment>
+  <ListContainer>
+    <List
+      data={users}
+      noItemsMessageComponent={() => <EmptyList message="Sorry, no users to be added" />}
+      renderItem={user => renderUserListItem({ user, ...rest })}
+    />
+  </ListContainer>
 );
 
 UsersListModal.propTypes = {

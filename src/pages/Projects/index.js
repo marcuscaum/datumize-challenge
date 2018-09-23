@@ -18,7 +18,7 @@ const ProjectsPage = ({
     <AddItemForm
       placeholder="Project name"
       buttonLabel="+ NEW PROJECT"
-      onClickSubmit={createProject}
+      action={createProject}
       fields={['name']}
       dataObject={{
         name: '',
