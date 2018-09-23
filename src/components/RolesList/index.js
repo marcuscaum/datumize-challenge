@@ -34,7 +34,7 @@ const RolesListComponent = ({
 
 RolesListComponent.propTypes = {
   roles: PropTypes.instanceOf(Array).isRequired,
-  projectTeam: PropTypes.string.isRequired,
+  projectTeam: PropTypes.instanceOf(Array).isRequired,
   projectId: PropTypes.number.isRequired,
   onClickRoleButton: PropTypes.func.isRequired,
 };
