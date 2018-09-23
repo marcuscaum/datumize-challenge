@@ -13,25 +13,40 @@ const AddItemFormComponent = ({
   onChangeValue,
   formValues,
   fields,
+  requiredFieldsState,
+  validateField,
 }) => (
   <AddItemForm>
     {fields.map(key => (
       <TextField
         key={key}
+        required
         placeholder={placeholder}
         type="text"
         name={key}
         onChange={onChangeValue}
         value={formValues[key]}
+        requiredField={requiredFieldsState[key]}
         onKeyPress={(e) => {
-          if (e.key === 'Enter') {
+          if (e.key === 'Enter' && e.target.value) {
             e.preventDefault();
             onClickSubmit(formValues);
           }
         }}
       />
     ))}
-    <Button type="button" onClick={() => onClickSubmit(formValues)}>
+    <Button
+      type="button"
+      onClick={() => {
+        const isEmpty = Object.keys(requiredFieldsState).some((key) => {
+          validateField(formValues[key], key);
+          return !formValues[key];
+        });
+
+        if (isEmpty) return false;
+        return onClickSubmit(formValues);
+      }}
+    >
       {buttonLabel}
     </Button>
   </AddItemForm>
@@ -42,16 +57,33 @@ AddItemFormComponent.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onClickSubmit: PropTypes.func.isRequired,
   onChangeValue: PropTypes.func.isRequired,
+  validateField: PropTypes.func.isRequired,
+  requiredFieldsState: PropTypes.instanceOf(Object).isRequired,
   formValues: PropTypes.instanceOf(Object).isRequired,
   fields: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default compose(
   withState('formValues', 'formValuesHandler', ({ dataObject }) => ({ ...dataObject })),
+  withState('requiredFieldsState', 'requiredFieldsStateHandler', ({ fields, requiredFields }) => {
+    const items = requiredFields || fields;
+    return Object.assign({}, ...items.map(item => ({ [item]: false })));
+  }),
   withHandlers({
-    onChangeValue: ({ formValues, formValuesHandler }) => e => formValuesHandler({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    }),
+    validateField: ({ requiredFieldsStateHandler, requiredFieldsState }) => (value, key) => {
+      requiredFieldsStateHandler({
+        ...requiredFieldsState,
+        [key]: !value,
+      });
+    },
+  }),
+  withHandlers({
+    onChangeValue: ({ formValues, formValuesHandler, validateField }) => (e) => {
+      validateField(e.target.value, e.target.name);
+      return formValuesHandler({
+        ...formValues,
+        [e.target.name]: e.target.value,
+      });
+    },
   }),
 )(AddItemFormComponent);

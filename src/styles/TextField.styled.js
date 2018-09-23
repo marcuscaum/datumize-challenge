@@ -6,6 +6,9 @@ export default styled.input`
   border-radius: 5px;
   display: flex;
   flex: 1;
-  border: none;
+  border: ${({ requiredField }) => (requiredField ? '1px solid red' : 'none')};
   margin-right: 10px;
+  &:focus {
+    outline: none;
+  }
 `;
