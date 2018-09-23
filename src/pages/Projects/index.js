@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose, withState } from 'recompose';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
@@ -12,7 +13,12 @@ import AddItemForm from '../../components/AddItemForm';
 import { RolesList, RoleItem, RoleButton } from './index.styled';
 
 const ProjectsPage = ({
-  projects, roles, createProject, deleteProject, openPortal, history,
+  projects,
+  roles,
+  createProject,
+  deleteProject,
+  openPortal,
+  roleValuesHandler,
 }) => (
   <React.Fragment>
     <AddItemForm
@@ -40,9 +46,11 @@ const ProjectsPage = ({
                     <strong>{role.name}</strong>
                     <RoleButton
                       onClick={() => {
-                        history.push(
-                          `/projects?id=${data.id}&role=${role.name}&user=${memberName}`,
-                        );
+                        roleValuesHandler({
+                          projectId: data.id,
+                          role: role.name,
+                          user: memberName,
+                        });
                         openPortal();
                       }}
                     >
@@ -70,14 +78,15 @@ ProjectsPage.propTypes = {
   roles: PropTypes.instanceOf(Array).isRequired,
   createProject: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
+  roleValuesHandler: PropTypes.func.isRequired,
   openPortal: PropTypes.func.isRequired,
 };
 
-export default withModal({
-  content: props => <UsersList {...props} />,
-  title: 'Assign an user',
-  description: 'Select a user from the list to assign to this role',
-})(ProjectsPage);
+export default compose(
+  withState('roleValues', 'roleValuesHandler', {}),
+  withModal({
+    content: props => <UsersList {...props} />,
+    title: 'Assign an user',
+    description: 'Select a user from the list to assign to this role',
+  }),
+)(ProjectsPage);
