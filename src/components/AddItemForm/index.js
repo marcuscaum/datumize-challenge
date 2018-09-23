@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { withState, withHandlers, compose } from 'recompose';
 
 import AddItemForm from './index.styled';
-import TextField from '../../styles/TextField.styled';
-import Button from '../../styles/Button.styled';
+import TextField from '../../ui-components/TextField.styled';
+import Button from '../../ui-components/Button.styled';
 
 const AddItemFormComponent = ({
   buttonLabel,

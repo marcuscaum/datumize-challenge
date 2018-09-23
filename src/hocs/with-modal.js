@@ -1,7 +1,7 @@
 import React from 'react';
 import { PortalWithState } from 'react-portal';
 
-import Modal from '../styles/Modal.styled';
+import Modal from '../ui-components/Modal.styled';
 
 const withModal = ({ content, title, description }) => WrappedComponent => (props, context) => (
   <PortalWithState closeOnEsc>

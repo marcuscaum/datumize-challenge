@@ -7,7 +7,7 @@ import Roles from '../containers/Roles';
 import Users from '../containers/Users';
 import NotFound from '../pages/NotFound';
 
-import Layout from '../styles/Layout.styled';
+import Layout from '../ui-components/Layout.styled';
 
 const {
   Sidebar, SidebarItem, Content, SidebarLogo,
