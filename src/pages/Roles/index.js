@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { lifecycle } from 'recompose';
+import { notify } from 'react-notify-toast';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
@@ -10,7 +11,13 @@ const RolesPage = ({ roles, createRole, deleteRole }) => (
   <React.Fragment>
     <AddItemForm
       buttonLabel="+ NEW ROLE"
-      action={createRole}
+      action={(values) => {
+        const nameTaken = roles.data.some(role => values.name === role.name);
+        if (nameTaken) {
+          return notify.show('Name already taken!', 'error');
+        }
+        return createRole(values);
+      }}
       fields={{
         name: 'Role name',
       }}
