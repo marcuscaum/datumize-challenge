@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, withHandlers } from 'recompose';
 
 import List from '../List';
 import ListItem from '../ListItem';
 import EmptyList from '../EmptyList';
 
 import ListContainer from './index.styled';
+import handlers from './handlers';
 
 const onClickListItem = async ({
-  validateProjectTeam, roleValues, closePortal, user,
+  validateTeamMember, roleValues, closePortal, user,
 }) => {
-  await validateProjectTeam(roleValues.projectId, {
+  const newProject = await validateTeamMember(roleValues.projectId, {
     role: roleValues.role,
     name: user.name,
   });
@@ -45,6 +46,7 @@ UsersListModal.propTypes = {
 };
 
 export default compose(
+  withHandlers({ ...handlers }),
   lifecycle({
     componentDidMount() {
       this.props.fetchUsers();

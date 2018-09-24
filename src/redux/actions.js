@@ -2,11 +2,6 @@ import { createAsyncAction } from 'redux-promise-middleware-actions';
 
 const apiUrl = process.env.NODE_ENV === 'production' ? 'http://localhost:1234' : 'http://localhost:3039';
 
-export const validateProjectTeam = (id, content) => ({
-  type: 'VALIDATE_PROJECT_TEAM',
-  payload: { id, content },
-});
-
 export const fetchProjects = createAsyncAction('FETCH_PROJECTS', () => fetch(`${apiUrl}/projects`).then(response => response.json()));
 export const fetchRoles = createAsyncAction('FETCH_ROLES', () => fetch(`${apiUrl}/roles`).then(response => response.json()));
 export const fetchUsers = createAsyncAction('FETCH_USERS', () => fetch(`${apiUrl}/users`).then(response => response.json()));
