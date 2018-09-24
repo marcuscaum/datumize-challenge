@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, withState, lifecycle } from 'recompose';
+import { notify } from 'react-notify-toast';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
@@ -18,7 +19,13 @@ const ProjectsPage = ({
     <AddItemForm
       placeholder="Project name"
       buttonLabel="+ NEW PROJECT"
-      action={createProject}
+      action={(values) => {
+        const nameTaken = projects.data.some(project => values.name === project.name);
+        if (nameTaken) {
+          return notify.show('Name already taken!', 'error');
+        }
+        return createProject(values);
+      }}
       fields={{
         name: 'Project name',
       }}
@@ -35,6 +42,7 @@ const ProjectsPage = ({
           <ListItem
             key={data.id}
             data={data.name}
+            dragAnimation
             onValueChange={{
               x: (x) => {
                 if (x === -200) {
