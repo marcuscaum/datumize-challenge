@@ -10,10 +10,9 @@ export default (
 ) => {
   switch (action.type) {
     case 'FETCH_PROJECTS_FULFILLED': {
-      const { projects } = action.payload;
       return {
         isLoading: false,
-        data: projects,
+        data: action.payload,
       };
     }
 
@@ -24,7 +23,7 @@ export default (
       };
     }
 
-    case 'CREATE_PROJECT': {
+    case 'CREATE_PROJECT_FULFILLED': {
       const { content } = action.payload;
       return update(state, {
         data: {
@@ -39,7 +38,7 @@ export default (
       });
     }
 
-    case 'DELETE_PROJECT': {
+    case 'DELETE_PROJECT_FULFILLED': {
       const { id } = action.payload;
       const data = state.data.filter(item => item.id !== id);
 
@@ -49,7 +48,7 @@ export default (
       };
     }
 
-    case 'ASSIGN_USER_TO_PROJECT': {
+    case 'VALIDATE_PROJECT_TEAM': {
       const { id, content } = action.payload;
 
       const projectIndex = state.data.findIndex(item => item.id === id);

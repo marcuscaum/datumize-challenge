@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { lifecycle } from 'recompose';
 
 import List from '../List';
 import ListItem from '../ListItem';
@@ -8,16 +9,17 @@ import EmptyList from '../EmptyList';
 import ListContainer from './index.styled';
 
 const renderUserListItem = ({
-  user, roleValues, assignUserToProject, closePortal,
+  user, roleValues, validateProjectTeam, closePortal, project,
 }) => user.name !== roleValues.user && (
 <ListItem
   key={user.id}
   data={user.name}
   onClick={async () => {
-    await assignUserToProject(roleValues.projectId, {
+    await validateProjectTeam(roleValues.projectId, {
       role: roleValues.role,
       name: user.name,
     });
+    console.lot('project', project);
     closePortal();
   }}
 />
@@ -36,9 +38,13 @@ const UsersListModal = ({ users, ...rest }) => (
 
 UsersListModal.propTypes = {
   users: PropTypes.instanceOf(Object).isRequired,
-  assignUserToProject: PropTypes.func.isRequired,
+  validateProjectTeam: PropTypes.func.isRequired,
   closePortal: PropTypes.func.isRequired,
   roleValues: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default UsersListModal;
+export default lifecycle({
+  componentWillMount() {
+    this.props.fetchUsers();
+  },
+})(UsersListModal);

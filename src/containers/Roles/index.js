@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { getRoles } from '../../redux/selectors';
-import { createActions, deleteActions, fetchRoles } from '../../redux/actions';
+import { createRole, deleteRole, fetchRoles } from '../../redux/actions';
 
 import RolesPage from '../../pages/Roles';
 
@@ -10,8 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  createRole: createActions.role,
-  deleteRole: deleteActions.role,
+  createRole,
+  deleteRole,
   fetchRoles,
 };
 

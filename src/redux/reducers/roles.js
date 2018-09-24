@@ -10,10 +10,9 @@ export default (
 ) => {
   switch (action.type) {
     case 'FETCH_ROLES_FULFILLED': {
-      const { roles } = action.payload;
       return {
         isLoading: false,
-        data: roles,
+        data: action.payload,
       };
     }
 
@@ -24,7 +23,7 @@ export default (
       };
     }
 
-    case 'CREATE_ROLE': {
+    case 'CREATE_ROLE_FULFILLED': {
       const { content } = action.payload;
       return update(state, {
         data: {
@@ -38,7 +37,7 @@ export default (
       });
     }
 
-    case 'DELETE_ROLE': {
+    case 'DELETE_ROLE_FULFILLED': {
       const { id } = action.payload;
       const data = state.data.filter(item => item.id !== id);
       return {

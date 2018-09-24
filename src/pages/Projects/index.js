@@ -5,8 +5,9 @@ import { notify } from 'react-notify-toast';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
-import UsersListModal from '../../components/UsersListModal';
 import RolesList from '../../components/RolesList';
+
+import UsersListModal from '../../containers/UsersListModal';
 
 import withModal from '../../hocs/with-modal';
 
@@ -70,19 +71,8 @@ ProjectsPage.propTypes = {
 export default compose(
   lifecycle({
     componentDidMount() {
-      // This is IF only needed cause we don't have an actually API with the saved data,
-      // So we use our redux store as source of true
-      if (!this.props.projects.data.length) {
-        this.props.fetchProjects();
-      }
-
-      if (!this.props.roles.data.length) {
-        this.props.fetchRoles();
-      }
-
-      if (!this.props.users.data.length) {
-        this.props.fetchUsers();
-      }
+      this.props.fetchProjects();
+      this.props.fetchRoles();
     },
   }),
   withState('roleValues', 'roleValuesHandler', {}),

@@ -23,7 +23,6 @@ const UsersPage = ({ users, createUser, deleteUser }) => (
       }}
       schema={{
         name: '',
-        members: [],
       }}
     />
     <section>

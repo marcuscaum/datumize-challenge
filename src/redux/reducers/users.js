@@ -10,10 +10,9 @@ export default (
 ) => {
   switch (action.type) {
     case 'FETCH_USERS_FULFILLED': {
-      const { users } = action.payload;
       return {
         isLoading: false,
-        data: users,
+        data: action.payload,
       };
     }
 
@@ -24,7 +23,7 @@ export default (
       };
     }
 
-    case 'CREATE_USER': {
+    case 'CREATE_USER_FULFILLED': {
       const { content } = action.payload;
       return update(state, {
         data: {
@@ -38,7 +37,7 @@ export default (
       });
     }
 
-    case 'DELETE_USER': {
+    case 'DELETE_USER_FULFILLED': {
       const { id } = action.payload;
       const data = state.data.filter(item => item.id !== id);
       return {

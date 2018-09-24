@@ -2,12 +2,7 @@ import { connect } from 'react-redux';
 
 import { getProjects, getRoles, getUsers } from '../../redux/selectors';
 import {
-  createActions,
-  deleteActions,
-  assignUserToProject,
-  fetchProjects,
-  fetchRoles,
-  fetchUsers,
+  fetchProjects, fetchRoles, createProject, deleteProject,
 } from '../../redux/actions';
 
 import ProjectsPage from '../../pages/Projects';
@@ -19,12 +14,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  createProject: createActions.project,
-  deleteProject: deleteActions.project,
-  assignUserToProject,
+  createProject,
+  deleteProject,
   fetchProjects,
   fetchRoles,
-  fetchUsers,
 };
 
 export default connect(

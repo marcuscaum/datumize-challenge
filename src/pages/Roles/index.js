@@ -23,7 +23,6 @@ const RolesPage = ({ roles, createRole, deleteRole }) => (
       }}
       schema={{
         name: '',
-        members: [],
       }}
     />
     <section>
