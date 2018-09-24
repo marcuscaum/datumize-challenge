@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { lifecycle } from 'recompose';
+import { notify } from 'react-notify-toast';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
@@ -10,7 +11,13 @@ const UsersPage = ({ users, createUser, deleteUser }) => (
   <React.Fragment>
     <AddItemForm
       buttonLabel="+ NEW USER"
-      action={createUser}
+      action={(values) => {
+        const nameTaken = users.data.some(user => values.name === user.name);
+        if (nameTaken) {
+          return notify.show('Name already taken!', 'error');
+        }
+        return createUser(values);
+      }}
       fields={{
         name: 'User name',
       }}
