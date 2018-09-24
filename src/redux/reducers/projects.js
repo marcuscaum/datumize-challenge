@@ -50,8 +50,8 @@ export default (
     case 'ASSIGN_USER_TO_PROJECT': {
       const { id, content } = action.payload;
 
-      const projectIndex = state.findIndex(item => item.id === id);
-      const { team } = state[projectIndex];
+      const projectIndex = state.data.findIndex(item => item.id === id);
+      const { team } = state.data[projectIndex];
 
       const teamMemberIndexByRole = team.length
         ? team.findIndex(item => item.role === content.role)
@@ -64,11 +64,13 @@ export default (
       // remove him from the previous role and set him on the new role
       if (teamMemberIndexByName >= 0 && teamMemberIndexByRole >= 0) {
         return update(state, {
-          [projectIndex]: {
-            team: {
-              $splice: [[teamMemberIndexByName, 1]],
-              [teamMemberIndexByRole]: {
-                name: { $set: content.name },
+          data: {
+            [projectIndex]: {
+              team: {
+                $splice: [[teamMemberIndexByName, 1]],
+                [teamMemberIndexByRole]: {
+                  name: { $set: content.name },
+                },
               },
             },
           },
@@ -79,10 +81,12 @@ export default (
       // remove the user with the role from the team and add the new user on the team using his role
       if (teamMemberIndexByName >= 0 && teamMemberIndexByRole < 0) {
         return update(state, {
-          [projectIndex]: {
-            team: {
-              $splice: [[teamMemberIndexByName, 1]],
-              $push: [{ ...content }],
+          data: {
+            [projectIndex]: {
+              team: {
+                $splice: [[teamMemberIndexByName, 1]],
+                $push: [{ ...content }],
+              },
             },
           },
         });
@@ -92,10 +96,12 @@ export default (
       // just update with the new user
       if (teamMemberIndexByRole >= 0) {
         return update(state, {
-          [projectIndex]: {
-            team: {
-              [teamMemberIndexByRole]: {
-                name: { $set: content.name },
+          data: {
+            [projectIndex]: {
+              team: {
+                [teamMemberIndexByRole]: {
+                  name: { $set: content.name },
+                },
               },
             },
           },
@@ -103,9 +109,11 @@ export default (
       }
 
       return update(state, {
-        [projectIndex]: {
-          team: {
-            $push: [{ ...content }],
+        data: {
+          [projectIndex]: {
+            team: {
+              $push: [{ ...content }],
+            },
           },
         },
       });
