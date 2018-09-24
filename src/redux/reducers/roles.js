@@ -2,22 +2,7 @@ import update from 'immutability-helper';
 
 import { CREATE_ROLE, DELETE_ROLE } from '../actionTypes';
 
-const initialState = [
-  {
-    id: 1,
-    name: 'Admin',
-  },
-  {
-    id: 2,
-    name: 'Editor',
-  },
-  {
-    id: 3,
-    name: 'Viewer',
-  },
-];
-
-export default (state = initialState, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case CREATE_ROLE: {
       const { content } = action.payload;

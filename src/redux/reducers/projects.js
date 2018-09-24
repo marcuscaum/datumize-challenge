@@ -1,33 +1,29 @@
 import update from 'immutability-helper';
 
-import { CREATE_PROJECT, DELETE_PROJECT, ASSIGN_USER_TO_PROJECT } from '../actionTypes';
-
-const initialState = [
-  {
-    id: 1,
-    name: 'Trip to space',
-    team: [
-      {
-        role: 'Editor',
-        name: 'John Doe',
-      },
-    ],
+export default (
+  state = {
+    isLoading: false,
+    data: [],
   },
-  {
-    id: 2,
-    name: 'Assembly Ikea furniture',
-    team: [],
-  },
-  {
-    id: 3,
-    name: 'Datumize Zentral',
-    team: [],
-  },
-];
-
-export default (state = initialState, action) => {
+  action,
+) => {
   switch (action.type) {
-    case CREATE_PROJECT: {
+    case 'FETCH_PROJECTS_FULFILLED': {
+      const { projects } = action.payload;
+      return {
+        isLoading: false,
+        data: projects,
+      };
+    }
+
+    case 'FETCH_PROJECTS_PENDING': {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+
+    case 'CREATE_PROJECT': {
       const { content } = action.payload;
       return update(state, {
         $push: [
@@ -39,12 +35,12 @@ export default (state = initialState, action) => {
       });
     }
 
-    case DELETE_PROJECT: {
+    case 'DELETE_PROJECT': {
       const { id } = action.payload;
       return state.filter(item => item.id !== id);
     }
 
-    case ASSIGN_USER_TO_PROJECT: {
+    case 'ASSIGN_USER_TO_PROJECT': {
       const { id, content } = action.payload;
 
       const projectIndex = state.findIndex(item => item.id === id);

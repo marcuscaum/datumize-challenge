@@ -2,22 +2,7 @@ import update from 'immutability-helper';
 
 import { CREATE_USER, DELETE_USER } from '../actionTypes';
 
-const initialState = [
-  {
-    id: 1,
-    name: 'John Doe',
-  },
-  {
-    id: 2,
-    name: 'Alice',
-  },
-  {
-    id: 3,
-    name: 'Bob',
-  },
-];
-
-export default (state = initialState, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case CREATE_USER: {
       const { content } = action.payload;

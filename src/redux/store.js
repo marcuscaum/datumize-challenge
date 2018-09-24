@@ -1,8 +1,20 @@
-/* eslint-disable */
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import promise from 'redux-promise-middleware';
+import createLogger from 'redux-logger';
+import thunk from 'redux-thunk';
+import { compose } from 'recompose';
+
 import reducers from './reducers';
 
-export default createStore(
+const middlewares = [promise(), createLogger, thunk];
+
+const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  compose(
+    applyMiddleware(...middlewares),
+    /* eslint-disable no-underscore-dangle */
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  ),
 );
+
+export default store;

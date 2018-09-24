@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, withState } from 'recompose';
+import { compose, withState, lifecycle } from 'recompose';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
 import UsersList from '../../components/UsersListModal';
 import RolesList from '../../components/RolesList';
+import LoadingSection from '../../components/LoadingSection';
 
 import withModal from '../../hocs/with-modal';
 
@@ -30,7 +31,7 @@ const ProjectsPage = ({
     />
     <section>
       <List
-        data={projects}
+        data={projects.data}
         renderItem={data => (
           <ListItem key={data.id} data={data.name}>
             <RolesList roles={roles} projectId={data.id} projectTeam={data.team} {...rest} />
@@ -48,13 +49,18 @@ const ProjectsPage = ({
 );
 
 ProjectsPage.propTypes = {
-  projects: PropTypes.instanceOf(Array).isRequired,
+  projects: PropTypes.instanceOf(Object).isRequired,
   roles: PropTypes.instanceOf(Array).isRequired,
   createProject: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
 };
 
 export default compose(
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchProjects();
+    },
+  }),
   withState('roleValues', 'roleValuesHandler', {}),
   withModal({
     content: props => <UsersList {...props} />,

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _compact from 'lodash.compact';
 import { PoseGroup } from 'react-pose';
+import { branch, renderComponent } from 'recompose';
 
+import LoadingSection from '../LoadingSection';
 import List from './index.styled';
 
 const ListComponent = ({ data, renderItem, noItemsMessageComponent }) => {
@@ -14,7 +16,7 @@ const ListComponent = ({ data, renderItem, noItemsMessageComponent }) => {
 
   return (
     <List>
-      <PoseGroup>{_compact(items)}</PoseGroup>
+      <PoseGroup animateOnMount>{_compact(items)}</PoseGroup>
     </List>
   );
 };
@@ -30,4 +32,4 @@ ListComponent.defaultProps = {
   noItemsMessageComponent: null,
 };
 
-export default ListComponent;
+export default branch(({ data }) => !data.length, renderComponent(LoadingSection))(ListComponent);
