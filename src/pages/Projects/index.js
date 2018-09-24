@@ -6,7 +6,6 @@ import List from '../../components/List';
 import ListItem from '../../components/ListItem';
 import UsersList from '../../components/UsersListModal';
 import RolesList from '../../components/RolesList';
-import LoadingSection from '../../components/LoadingSection';
 
 import withModal from '../../hocs/with-modal';
 

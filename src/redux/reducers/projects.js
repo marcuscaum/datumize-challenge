@@ -26,18 +26,25 @@ export default (
     case 'CREATE_PROJECT': {
       const { content } = action.payload;
       return update(state, {
-        $push: [
-          {
-            id: state[state.length - 1].id + 1,
-            ...content,
-          },
-        ],
+        data: {
+          $push: [
+            {
+              id: state.data[state.data.length - 1].id + 1,
+              ...content,
+            },
+          ],
+        },
       });
     }
 
     case 'DELETE_PROJECT': {
       const { id } = action.payload;
-      return state.filter(item => item.id !== id);
+      const data = state.data.filter(item => item.id !== id);
+
+      return {
+        ...state,
+        data,
+      };
     }
 
     case 'ASSIGN_USER_TO_PROJECT': {

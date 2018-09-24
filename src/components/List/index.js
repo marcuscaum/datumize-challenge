@@ -32,4 +32,6 @@ ListComponent.defaultProps = {
   noItemsMessageComponent: null,
 };
 
-export default branch(({ data }) => !data.length, renderComponent(LoadingSection))(ListComponent);
+export default branch(({ data }) => data && !data.length, renderComponent(LoadingSection))(
+  ListComponent,
+);
