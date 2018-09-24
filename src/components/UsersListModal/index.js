@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { lifecycle } from 'recompose';
+import { compose, lifecycle } from 'recompose';
 
 import List from '../List';
 import ListItem from '../ListItem';
@@ -8,20 +8,21 @@ import EmptyList from '../EmptyList';
 
 import ListContainer from './index.styled';
 
-const renderUserListItem = ({
-  user, roleValues, validateProjectTeam, closePortal, project,
-}) => user.name !== roleValues.user && (
+const onClickListItem = async ({
+  validateProjectTeam, roleValues, closePortal, user,
+}) => {
+  await validateProjectTeam(roleValues.projectId, {
+    role: roleValues.role,
+    name: user.name,
+  });
+  closePortal();
+};
+
+const renderUserListItem = ({ user, roleValues, ...rest }) => user.name !== roleValues.user && (
 <ListItem
   key={user.id}
   data={user.name}
-  onClick={async () => {
-    await validateProjectTeam(roleValues.projectId, {
-      role: roleValues.role,
-      name: user.name,
-    });
-    console.lot('project', project);
-    closePortal();
-  }}
+  onClick={() => onClickListItem({ roleValues, user, ...rest })}
 />
 );
 
@@ -43,8 +44,15 @@ UsersListModal.propTypes = {
   roleValues: PropTypes.instanceOf(Object).isRequired,
 };
 
-export default lifecycle({
-  componentWillMount() {
-    this.props.fetchUsers();
-  },
-})(UsersListModal);
+export default compose(
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchUsers();
+    },
+    componentDidUpdate(prevProps) {
+      if (prevProps.project.team !== this.props.project.team) {
+        this.props.updateProject(this.props.project.id, this.props.project);
+      }
+    },
+  }),
+)(UsersListModal);

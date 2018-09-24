@@ -23,6 +23,12 @@ export default (
       };
     }
 
+    case 'UPDATE_PROJECT_FULFILLED': {
+      return {
+        ...state,
+      };
+    }
+
     case 'CREATE_PROJECT_FULFILLED': {
       const { content } = action.payload;
       return update(state, {

@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 
 import { getUsers, getProjectById } from '../../redux/selectors';
 import {
-  assignUserToProject,
-  validateProjectTeam,
-  fetchUsers,
-  fetchProjects,
+  updateProject, validateProjectTeam, fetchUsers, fetchProjects,
 } from '../../redux/actions';
 
 import UsersListModal from '../../components/UsersListModal';
@@ -16,7 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  assignUserToProject,
+  updateProject,
   validateProjectTeam,
   fetchUsers,
   fetchProjects,

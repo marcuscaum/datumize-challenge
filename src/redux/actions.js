@@ -11,15 +11,13 @@ export const fetchProjects = createAsyncAction('FETCH_PROJECTS', () => fetch(`${
 export const fetchRoles = createAsyncAction('FETCH_ROLES', () => fetch(`${apiUrl}/roles`).then(response => response.json()));
 export const fetchUsers = createAsyncAction('FETCH_USERS', () => fetch(`${apiUrl}/users`).then(response => response.json()));
 
-export const assignUserToProject = createAsyncAction('ASSIGN_USER_TO_PROJECT', async (id, data) => {
+export const updateProject = createAsyncAction('UPDATE_PROJECT', async (id, data) => {
   const rawResponse = await fetch(`${apiUrl}/projects/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      team: JSON.stringify(data),
-    }),
+    body: JSON.stringify(data),
   });
 
   const content = await rawResponse.json();
