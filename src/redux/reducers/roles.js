@@ -22,6 +22,7 @@ export default (
         isLoading: true,
       };
     }
+
     case 'CREATE_ROLE': {
       const { content } = action.payload;
       return update(state, {

@@ -26,7 +26,8 @@ const renderUserListItem = ({
 const UsersListModal = ({ users, ...rest }) => (
   <ListContainer>
     <List
-      data={users}
+      data={users.data}
+      isLoading={users.isLoading}
       noItemsMessageComponent={() => <EmptyList message="Sorry, no users to be added" />}
       renderItem={user => renderUserListItem({ user, ...rest })}
     />
@@ -34,7 +35,7 @@ const UsersListModal = ({ users, ...rest }) => (
 );
 
 UsersListModal.propTypes = {
-  users: PropTypes.instanceOf(Array).isRequired,
+  users: PropTypes.instanceOf(Object).isRequired,
   assignUserToProject: PropTypes.func.isRequired,
   closePortal: PropTypes.func.isRequired,
   roleValues: PropTypes.instanceOf(Object).isRequired,

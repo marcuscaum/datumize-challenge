@@ -6,6 +6,8 @@ import {
   deleteActions,
   assignUserToProject,
   fetchProjects,
+  fetchRoles,
+  fetchUsers,
 } from '../../redux/actions';
 
 import ProjectsPage from '../../pages/Projects';
@@ -21,6 +23,8 @@ const mapDispatchToProps = {
   deleteProject: deleteActions.project,
   assignUserToProject,
   fetchProjects,
+  fetchRoles,
+  fetchUsers,
 };
 
 export default connect(

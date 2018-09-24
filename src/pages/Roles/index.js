@@ -32,13 +32,15 @@ const RolesPage = ({ roles, createRole, deleteRole }) => (
 );
 
 RolesPage.propTypes = {
-  roles: PropTypes.instanceOf(Array).isRequired,
+  roles: PropTypes.instanceOf(Object).isRequired,
   createRole: PropTypes.func.isRequired,
   deleteRole: PropTypes.func.isRequired,
 };
 
 export default lifecycle({
   componentDidMount() {
-    this.props.fetchRoles();
+    if (!this.props.roles.data.length) {
+      this.props.fetchRoles();
+    }
   },
 })(RolesPage);
