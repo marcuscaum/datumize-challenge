@@ -35,6 +35,7 @@ const ProjectsPage = ({
       }}
     />
     <section>
+      {Boolean(projects.data.length) && <h2>Drag left to remove the item.</h2>}
       <List
         data={projects.data}
         isLoading={projects.isLoading || roles.isLoading}

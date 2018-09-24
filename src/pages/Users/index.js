@@ -27,6 +27,7 @@ const UsersPage = ({ users, createUser, deleteUser }) => (
       }}
     />
     <section>
+      {Boolean(users.data.length) && <h2>Drag left to remove the item.</h2>}
       <List
         data={users.data}
         isLoading={users.isLoading}
