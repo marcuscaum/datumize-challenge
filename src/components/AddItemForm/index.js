@@ -62,7 +62,7 @@ AddItemFormComponent.propTypes = {
 };
 
 export default compose(
-  withState('formValues', 'formValuesHandler', ({ dataObject }) => ({ ...dataObject })),
+  withState('formValues', 'formValuesHandler', ({ schema }) => ({ ...schema })),
   withState('requiredFieldsState', 'requiredFieldsStateHandler', ({ fields, requiredFields }) => {
     const items = requiredFields || Object.keys(fields);
     return Object.assign({}, ...items.map(item => ({ [item]: false })));

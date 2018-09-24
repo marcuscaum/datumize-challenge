@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { lifecycle } from 'recompose';
 
 import List from '../../components/List';
 import ListItem from '../../components/ListItem';
@@ -13,13 +14,13 @@ const RolesPage = ({ roles, createRole, deleteRole }) => (
       fields={{
         name: 'Role name',
       }}
-      dataObject={{
+      schema={{
         name: '',
         members: [],
       }}
     />
     <section>
-      <List data={roles} renderItem={data => <ListItem key={data.id} data={data.name} />} />
+      <List data={roles.data} renderItem={data => <ListItem key={data.id} data={data.name} />} />
       <button type="button" onClick={() => createRole({ name: 'Test' })}>
         Add Role
       </button>
@@ -36,4 +37,8 @@ RolesPage.propTypes = {
   deleteRole: PropTypes.func.isRequired,
 };
 
-export default RolesPage;
+export default lifecycle({
+  componentDidMount() {
+    this.props.fetchRoles();
+  },
+})(RolesPage);

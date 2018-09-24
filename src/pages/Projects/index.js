@@ -22,7 +22,7 @@ const ProjectsPage = ({
       fields={{
         name: 'Project name',
       }}
-      dataObject={{
+      schema={{
         name: '',
         xunda: '',
         team: [],
@@ -33,7 +33,7 @@ const ProjectsPage = ({
         data={projects.data}
         renderItem={data => (
           <ListItem key={data.id} data={data.name}>
-            <RolesList roles={roles} projectId={data.id} projectTeam={data.team} {...rest} />
+            <RolesList roles={roles.data} projectId={data.id} projectTeam={data.team} {...rest} />
           </ListItem>
         )}
       />

@@ -1,8 +1,6 @@
 import { createAsyncAction } from 'redux-promise-middleware-actions';
 
-import {
-  CREATE_ROLE, CREATE_USER, DELETE_ROLE, DELETE_USER,
-} from './actionTypes';
+import { CREATE_USER, DELETE_USER } from './actionTypes';
 
 export const createActions = {
   project: content => ({
@@ -10,7 +8,7 @@ export const createActions = {
     payload: { content },
   }),
   role: content => ({
-    type: CREATE_ROLE,
+    type: 'CREATE_ROLE',
     payload: { content },
   }),
   user: content => ({
@@ -25,7 +23,7 @@ export const deleteActions = {
     payload: { id },
   }),
   role: id => ({
-    type: DELETE_ROLE,
+    type: 'DELETE_ROLE',
     payload: { id },
   }),
   user: id => ({
@@ -40,3 +38,4 @@ export const assignUserToProject = (id, content) => ({
 });
 
 export const fetchProjects = createAsyncAction('FETCH_PROJECTS', () => fetch('https://api.myjson.com/bins/a72x0').then(response => response.json()));
+export const fetchRoles = createAsyncAction('FETCH_ROLES', () => fetch('https://api.myjson.com/bins/1dq9hg').then(response => response.json()));

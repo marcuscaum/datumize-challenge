@@ -13,7 +13,7 @@ const UsersPage = ({ users, createUser, deleteUser }) => (
       fields={{
         name: 'User name',
       }}
-      dataObject={{
+      schema={{
         name: '',
         members: [],
       }}
