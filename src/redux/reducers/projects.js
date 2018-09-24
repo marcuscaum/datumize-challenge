@@ -24,9 +24,18 @@ export default (
     }
 
     case 'UPDATE_PROJECT_FULFILLED': {
-      return {
-        ...state,
-      };
+      const { id, content } = action.payload;
+      const projectIndex = state.data.findIndex(project => project.id === id);
+
+      return update(state, {
+        data: {
+          [projectIndex]: {
+            $set: {
+              ...content,
+            },
+          },
+        },
+      });
     }
 
     case 'CREATE_PROJECT_FULFILLED': {
@@ -52,9 +61,6 @@ export default (
         ...state,
         data,
       };
-    }
-
-    case 'VALIDATE_PROJECT_TEAM': {
     }
 
     default:
