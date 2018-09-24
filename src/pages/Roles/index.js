@@ -27,13 +27,23 @@ const RolesPage = ({ roles, createRole, deleteRole }) => (
       }}
     />
     <section>
-      <List data={roles.data} renderItem={data => <ListItem key={data.id} data={data.name} />} />
-      <button type="button" onClick={() => createRole({ name: 'Test' })}>
-        Add Role
-      </button>
-      <button type="button" onClick={() => deleteRole(2)}>
-        Delete Role
-      </button>
+      <List
+        data={roles.data}
+        renderItem={data => (
+          <ListItem
+            key={data.id}
+            data={data.name}
+            dragAnimation
+            onValueChange={{
+              x: (x) => {
+                if (x === -200) {
+                  deleteRole(data.id);
+                }
+              },
+            }}
+          />
+        )}
+      />
     </section>
   </React.Fragment>
 );

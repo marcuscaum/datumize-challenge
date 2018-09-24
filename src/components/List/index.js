@@ -32,10 +32,4 @@ ListComponent.defaultProps = {
   noItemsMessageComponent: null,
 };
 
-export default branch(({ data, isLoading }) => {
-  if (isLoading !== undefined) {
-    return isLoading;
-  }
-
-  return data && !data.length;
-}, renderComponent(LoadingSection))(ListComponent);
+export default branch(({ isLoading }) => isLoading, renderComponent(LoadingSection))(ListComponent);
