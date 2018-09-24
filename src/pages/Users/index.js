@@ -30,14 +30,21 @@ const UsersPage = ({ users, createUser, deleteUser }) => (
       <List
         data={users.data}
         isLoading={users.isLoading}
-        renderItem={data => <ListItem key={data.id} data={data.name} />}
+        renderItem={data => (
+          <ListItem
+            key={data.id}
+            data={data.name}
+            dragAnimation
+            onValueChange={{
+              x: (x) => {
+                if (x === -200) {
+                  deleteUser(data.id);
+                }
+              },
+            }}
+          />
+        )}
       />
-      <button type="button" onClick={() => createUser({ name: 'Test' })}>
-        Add User
-      </button>
-      <button type="button" onClick={() => deleteUser(2)}>
-        Delete User
-      </button>
     </section>
   </React.Fragment>
 );
