@@ -30,19 +30,23 @@ const ProjectsPage = ({
     <section>
       <List
         data={projects.data}
-        isLoading={projects.isLoading}
+        isLoading={projects.isLoading || roles.isLoading}
         renderItem={data => (
-          <ListItem key={data.id} data={data.name}>
+          <ListItem
+            key={data.id}
+            data={data.name}
+            onValueChange={{
+              x: (x) => {
+                if (x === -200) {
+                  deleteProject(data.id);
+                }
+              },
+            }}
+          >
             <RolesList roles={roles.data} projectId={data.id} projectTeam={data.team} {...rest} />
           </ListItem>
         )}
       />
-      <button type="button" onClick={() => createProject({ name: 'Test' })}>
-        Add Project
-      </button>
-      <button type="button" onClick={() => deleteProject(2)}>
-        Delete Project
-      </button>
     </section>
   </React.Fragment>
 );

@@ -1,4 +1,5 @@
 import update from 'immutability-helper';
+import v5 from 'uuid';
 
 export default (
   state = {
@@ -29,7 +30,8 @@ export default (
         data: {
           $push: [
             {
-              id: state.data[state.data.length - 1].id + 1,
+              id: v5(),
+              team: [],
               ...content,
             },
           ],
