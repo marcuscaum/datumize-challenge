@@ -29,6 +29,7 @@ const RolesPage = ({ roles, createRole, deleteRole }) => (
     <section>
       <List
         data={roles.data}
+        isLoading={roles.isLoading}
         renderItem={data => (
           <ListItem
             key={data.id}

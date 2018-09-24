@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _compact from 'lodash.compact';
 import { PoseGroup } from 'react-pose';
-import { branch, renderComponent } from 'recompose';
+import { branch, renderComponent, compose } from 'recompose';
 
 import LoadingSection from '../LoadingSection';
 import List from './index.styled';
@@ -32,4 +32,7 @@ ListComponent.defaultProps = {
   noItemsMessageComponent: null,
 };
 
-export default branch(({ isLoading }) => isLoading, renderComponent(LoadingSection))(ListComponent);
+export default compose(
+  branch(({ isLoading }) => isLoading, renderComponent(LoadingSection)),
+  branch(({ data }) => data && !data.length, renderComponent(() => <h1>Nothing here :(</h1>)),
+)(ListComponent);
