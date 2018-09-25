@@ -2,6 +2,8 @@
 
 ### Datumize Challenge
 
+[UI Component Documentation](https://dist-ihuaclnbji.now.sh/src-components-add-item-form-index#basic-usage)
+
 To run it locally
 
 Install the packages:
@@ -13,11 +15,11 @@ yarn
 Start the local db:
 
 ```sh
-yarn run start:db
+yarn start:db
 ```
 
 Start the server:
 
 ```sh
-yarn run start
+yarn start
 ```
