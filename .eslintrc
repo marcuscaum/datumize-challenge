@@ -3,6 +3,9 @@
   "rules": {
     "react/jsx-filename-extension": 0
   },
+  "env": {
+    "jest": true
+  },
   "globals": {
     "document": true,
     "window": true,
