@@ -2,7 +2,7 @@
 
 ### Datumize Challenge
 
-[UI Component Documentation](https://dist-ihuaclnbji.now.sh/src-components-add-item-form-index#basic-usage)
+[UI Component Documentation](https://dist-jooukvzitv.now.sh/)
 
 To run it locally
 
