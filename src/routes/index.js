@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
 import Notifications from 'react-notify-toast';
 
-import Home from '../pages/Home';
 import Projects from '../containers/Projects';
 import Roles from '../containers/Roles';
 import Users from '../containers/Users';
@@ -24,9 +25,6 @@ const App = () => (
             alt="Logo"
           />
         </SidebarLogo>
-        <SidebarItem exact to="/">
-          Home
-        </SidebarItem>
         <SidebarItem exact to="/projects">
           Projects
         </SidebarItem>
@@ -40,9 +38,8 @@ const App = () => (
       <Content>
         <Notifications />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={() => <Redirect to="/projects" />} />
           <Route exact path="/projects" component={Projects} />
-          <Route exact path="/projects/:id" component={Projects} />
           <Route exact path="/roles" component={Roles} />
           <Route exact path="/users" component={Users} />
           <Route component={NotFound} />
