@@ -1,8 +1,6 @@
 import { createAsyncAction } from 'redux-promise-middleware-actions';
 
-const apiUrl = process.env.NODE_ENV === 'production'
-  ? 'https://datumize-challenge-api-jgxuizdirm.now.sh/'
-  : 'http://localhost:3039';
+const apiUrl = 'http://localhost:3039';
 
 export const fetchProjects = createAsyncAction('FETCH_PROJECTS', () => fetch(`${apiUrl}/projects`).then(response => response.json()));
 export const fetchRoles = createAsyncAction('FETCH_ROLES', () => fetch(`${apiUrl}/roles`).then(response => response.json()));
