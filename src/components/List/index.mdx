@@ -1,0 +1,35 @@
+---
+name: List with ListItem
+---
+
+
+import { Playground, PropsTable } from 'docz'
+import List from './index'
+import ListItem from '../ListItem/index'
+
+# List with ListItem
+
+<PropsTable of={List} />
+
+## Basic usage
+
+<Playground>
+    <List
+      data={[
+        {
+          id: 1,
+          name: 'John Doe',
+        },
+        {
+          id: 2,
+          name: 'Bob Ross',
+        }
+      ]}
+      renderItem={data => (
+        <ListItem
+          key={data.id}
+          data={data.name}
+        />
+      )}
+    />
+</Playground>

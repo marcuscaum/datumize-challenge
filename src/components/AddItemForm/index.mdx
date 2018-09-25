@@ -1,0 +1,28 @@
+---
+name: AddItemForm
+---
+
+
+import { Playground, PropsTable } from 'docz'
+import AddItemForm from './index'
+
+# AddItemForm
+
+<PropsTable of={AddItemForm} />
+
+## Basic usage
+
+<Playground>
+    <AddItemForm
+      buttonLabel="+ NEW ROLE"
+      action={(values) => {
+        console.log(values)
+      }}
+      fields={{
+        name: 'Role name',
+      }}
+      schema={{
+        name: '',
+      }}
+    />
+</Playground>
