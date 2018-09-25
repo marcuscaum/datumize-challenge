@@ -26,7 +26,6 @@ const RolesPage = ({ roles, createRole, deleteRole }) => (
       }}
     />
     <section>
-      {Boolean(roles.data.length) && <h2>Drag left to remove the item.</h2>}
       <List
         data={roles.data}
         isLoading={roles.isLoading}
